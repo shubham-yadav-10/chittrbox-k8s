@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+  body {
+    background: var(--fallback-b2, oklch(var(--b2)) / 1);
+    color: var(--fallback-bc, oklch(var(--bc)) / 1);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* Glass panel used across the app */
+  .glass-panel {
+    background: linear-gradient(
+      160deg,
+      oklch(var(--fallback-b1, oklch(var(--b1)) / 0.85)),
+      oklch(var(--fallback-b2, oklch(var(--b2)) / 0.75))
+    );
+    backdrop-filter: blur(14px);
+  }
+
+  .brand-gradient-text {
+    background: linear-gradient(120deg, #7c86ff 0%, #38bdf8 55%, #2dd4bf 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn-brand {
+    background: linear-gradient(120deg, #7c86ff 0%, #5b8cf7 55%, #2dd4bf 100%);
+    background-size: 150% 150%;
+    color: #fff;
+    border: none;
+    box-shadow: 0 8px 20px -8px oklch(var(--fallback-p, oklch(var(--p)) / 0.65));
+    transition: all 0.25s ease;
+  }
+  .btn-brand:hover {
+    background-position: 100% 50%;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px -8px oklch(var(--fallback-p, oklch(var(--p)) / 0.75));
+  }
+  .btn-brand:active {
+    transform: translateY(0);
+  }
+  .btn-brand:disabled {
+    opacity: 0.6;
+    transform: none;
+  }
+
+  .chat-input-shell {
+    background: oklch(var(--fallback-b2, oklch(var(--b2)) / 0.8));
+    border: 1px solid oklch(var(--fallback-bc, oklch(var(--bc)) / 0.12));
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .chat-input-shell:focus-within {
+    border-color: oklch(var(--fallback-p, oklch(var(--p)) / 0.6));
+    box-shadow: 0 0 0 3px oklch(var(--fallback-p, oklch(var(--p)) / 0.15));
+  }
+
+  .contact-active {
+    background: linear-gradient(
+      120deg,
+      oklch(var(--fallback-p, oklch(var(--p)) / 0.18)),
+      oklch(var(--fallback-s, oklch(var(--s)) / 0.12))
+    );
+    box-shadow: inset 3px 0 0 oklch(var(--fallback-p, oklch(var(--p)) / 0.9));
+  }
+}
+
+/* ---------- Scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(var(--fallback-bc, oklch(var(--bc)) / 0.25)) transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: oklch(var(--fallback-bc, oklch(var(--bc)) / 0.25));
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- Animations ---------- */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(30px, -24px, 0) scale(1.08);
+  }
+}
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(-26px, 20px, 0) scale(0.95);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 14s ease-in-out infinite;
+}
+.animate-float-slower {
+  animation: float-slower 18s ease-in-out infinite;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-rise-in {
+  animation: rise-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-pop-in {
+  animation: pop-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ping-slow {
+  75%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.animate-ping-slow {
+  animation: ping-slow 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
